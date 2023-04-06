@@ -5,4 +5,4 @@
 - Frontend: React + TailwindCSS
 - Backend: Flask + OpenAI API
 
-![italygpt](https://user-images.githubusercontent.com/120139042/230442016-f33e54e8-8f78-44de-b210-8fd59190ca80.png)
+![italygpt2](https://user-images.githubusercontent.com/120139042/230502865-2f4aa506-5b57-4874-9cd5-a52f180e25f6.png)
