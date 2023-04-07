@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className='p-5 flex h-[60px] bg-[#131313] w-full items-center justify-between'>
         
         <div className='flex items-center justify-center gap-2'>
-            <h1 className='text-white font-bold text-xl cursor-pointer hover:text-neutral-200 transition'>ItalyGPT</h1>
+            <a onClick={() => navigate('/')} className='text-white font-bold text-xl cursor-pointer hover:text-neutral-200 transition'>ItalyGPT</a>
             <GiItalia size={25} color='white'/>
         </div>
 

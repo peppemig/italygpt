@@ -9,7 +9,7 @@ const LoadingMessage = () => {
         <div className='flex h-full w-[10%] p-3 items-center justify-center'>
             <AiFillRobot size={30}/>
         </div>
-        <div className='flex h-full justify-center w-[90%] p-3'>
+        <div className='flex h-full items-center justify-center w-[90%] p-3'>
             <FaPizzaSlice className='animate-spin'size={25}/>
         </div>
     </div>
