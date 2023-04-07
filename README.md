@@ -3,6 +3,7 @@
 - Fullstack React application to use OpenAI API in Italy (since ChatGPT is currently blocked)
 - Frontend: React + TailwindCSS
 - Backend: Flask + OpenAI API
+- State Management: Redux Toolkit
 
 ![italygptscreen1](https://user-images.githubusercontent.com/120139042/230591237-270389e8-cc7b-431a-9035-fa9aeeff9a1b.png)
 
