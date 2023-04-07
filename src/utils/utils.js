@@ -1,5 +1,6 @@
 import { format } from "date-fns"
 import axios from "axios"
+import { toast } from 'react-hot-toast'
 
 // GENERATE DATE 'hh:mm dd/MM/yyyy'
 export const genDate = () => {
@@ -15,5 +16,20 @@ export const askQuestion = async (question, apikey) => {
     return response.data
   } catch (error) {
     return error.message
+  }
+}
+
+// DELETE ALL MESSAGES
+export const deleteAllMessages = async () => {
+  try {
+    const response = await axios.delete('http://localhost:5000/api/message').then(toast.success('Cronologia messaggi eliminata'))
+    
+    setTimeout(() => {
+      window.location.reload(false);
+    }, "1500")
+
+    return response
+  } catch (error) {
+    return error
   }
 }
