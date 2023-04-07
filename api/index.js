@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import askRoute from "./routes/ask.js"
 import messageRoute from "./routes/message.js"
+import conversationRoute from "./routes/conversation.js"
 import mongoose from "mongoose"
 
 const app = express()
@@ -24,6 +25,7 @@ const connect = async () => {
 // ask
 app.use("/api/ask", askRoute)
 app.use("/api/message", messageRoute)
+app.use("/api/conversation", conversationRoute)
 
 // START
 app.listen(5000, () => {

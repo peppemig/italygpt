@@ -1,5 +1,13 @@
 import { Configuration, OpenAIApi } from "openai"
 import Message from "../models/Message.js"
+import { format } from "date-fns"
+
+// GENERATE DATE 'hh:mm dd/MM/yyyy'
+export const genDate = () => {
+    const date = new Date
+    const formattedDate = format(date, 'hh:mm dd/MM/yyyy')
+    return formattedDate
+}
 
 export const askQuestion = async (req, res) => {
     
@@ -8,7 +16,7 @@ export const askQuestion = async (req, res) => {
         const apikey = req.body.apikey
 
         const newQuestion = new Message({
-            createdAt: Date.now(),
+            createdAt: genDate().toString(),
             type: 'human',
             text: text
         })
@@ -28,7 +36,7 @@ export const askQuestion = async (req, res) => {
         const response = completion.data.choices[0].text
         
         const newAnswer = new Message({
-            createdAt: Date.now(),
+            createdAt: genDate().toString(),
             type: 'bot',
             text: response
         })
