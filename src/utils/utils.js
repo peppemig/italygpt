@@ -10,9 +10,9 @@ export const genDate = () => {
 }
 
 // ASK QUESTION TO API
-export const askQuestion = async (question, apikey) => {
+export const askQuestion = async (convid, question, apikey) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/ask', {data: question, apikey: apikey})
+    const response = await axios.put(`http://localhost:5000/api/ask/${convid}`, {data: question, apikey: apikey})
     return response.data
   } catch (error) {
     return error.message
@@ -20,9 +20,9 @@ export const askQuestion = async (question, apikey) => {
 }
 
 // DELETE ALL MESSAGES
-export const deleteAllMessages = async () => {
+export const deleteAllMessages = async (convid) => {
   try {
-    const response = await axios.delete('http://localhost:5000/api/message').then(toast.success('Cronologia messaggi eliminata'))
+    const response = await axios.put(`http://localhost:5000/api/conversation/messages/${convid}`).then(toast.success('Cronologia messaggi eliminata'))
     
     setTimeout(() => {
       window.location.reload(false);

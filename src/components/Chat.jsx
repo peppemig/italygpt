@@ -19,6 +19,7 @@ const Chat = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openCreateConvModal, setOpenCreateConvModal] = useState(false)
   const apikey = localStorage.getItem('apikey')
+  const conversationid = localStorage.getItem('conversationid')
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -26,10 +27,10 @@ const Chat = () => {
     }
   };
 
-  const getMessages = async () => {
+  const getMessages = async (convid) => {
     try {
-      const messages = await axios.get('http://localhost:5000/api/message')
-      setChatMessages(messages.data)
+      const messages = await axios.get(`http://localhost:5000/api/conversation/${convid}`)
+      setChatMessages(messages.data.messages)
       return messages
     } catch (error) {
       return error.message
@@ -62,7 +63,7 @@ const Chat = () => {
     }
 
     setChatMessages([...chatMessages, newMessage])
-    const response = await askQuestion(text, apikey)
+    const response = await askQuestion(conversationid, text, apikey)
 
     const newAnswer = {
       createdAt: genDate(),
@@ -88,7 +89,7 @@ const Chat = () => {
   }, [chatMessages])
 
   useEffect(() => {
-    getMessages()
+    getMessages(conversationid)
     getConversations()
   }, [])
 
@@ -105,7 +106,7 @@ const Chat = () => {
               <div className='flex p-4 w-full justify-center text-center text-lg font-bold'>Sei sicuro di voler cancellare la tua cronologia messaggi?</div>
 
               <div className='flex items-center justify-center gap-3'>
-                <div onClick={() => deleteAllMessages()} className='bg-green-500 cursor-pointer text-white rounded-md w-[100px] h-[40px] flex font-bold text-lg items-center justify-center hover:bg-green-700 transition'>Si</div>
+                <div onClick={() => deleteAllMessages(conversationid)} className='bg-green-500 cursor-pointer text-white rounded-md w-[100px] h-[40px] flex font-bold text-lg items-center justify-center hover:bg-green-700 transition'>Si</div>
                 <div onClick={() => setOpenDeleteModal(false)} className='bg-red-500 cursor-pointer text-white rounded-md w-[100px] h-[40px] flex font-bold text-lg items-center justify-center hover:bg-red-700 transition'>No</div>
               </div>
 
@@ -191,7 +192,7 @@ const Chat = () => {
               <input onKeyDown={handleKeyDown} disabled={loading} value={currentMessage} onChange={(e) => setCurrentMessage(e.target.value)} className='bg-transparent w-full h-full p-5 focus:outline-none text-white' placeholder='Cerca qualcosa...'/>
 
               <div className='flex flex-col gap-2'>
-                <div onClick={() => pushMessageToArr(currentMessage)} className='h-10 w-10 bg-[#202329] items-center rounded-md justify-center flex hover:bg-[#3d434e] transition cursor-pointer'>
+                <div onClick={() => pushMessageToArr(conversationid, currentMessage)} className='h-10 w-10 bg-[#202329] items-center rounded-md justify-center flex hover:bg-[#3d434e] transition cursor-pointer'>
                   <BsSend size={24} color='white' />
                 </div>
                 <div onClick={() => setOpenDeleteModal(!openDeleteModal)} className='h-10 w-10 bg-[#202329] items-center rounded-md justify-center flex hover:bg-[#3d434e] transition cursor-pointer'>
