@@ -4,6 +4,6 @@ import { askQuestion } from "../controllers/ask.js"
 const router = express.Router()
 
 //POST
-router.post("/", askQuestion)
+router.put("/:id", askQuestion)
 
 export default router
