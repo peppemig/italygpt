@@ -42,7 +42,7 @@ const Settings = () => {
           </div>
           <div className='flex items-center justify-center mt-5 gap-1'>
             <h1 className='text-white'>
-              Non hai un API key?
+              Non hai una API key?
             </h1>
             <a href='https://platform.openai.com/account/api-keys' target='_blank' className='font-bold text-white hover:text-neutral-400 transition cursor-pointer'>
               Ottienila qui
