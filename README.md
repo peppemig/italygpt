@@ -9,7 +9,8 @@
 
 ![italygptv2-2](https://user-images.githubusercontent.com/120139042/230776638-6f68cc48-5864-4bdb-8191-2b5a31eaa8b5.png)
 
-![italygpt1-mobile](https://user-images.githubusercontent.com/120139042/230799920-2a20d0cd-cec2-44d0-8ee8-5270090cf552.png)![italygpt2-mobile](https://user-images.githubusercontent.com/120139042/230799922-fa5e9340-e4a4-4ac9-ad5d-997379715ed0.png)
+![italygpt1-mobile](https://user-images.githubusercontent.com/120139042/230799920-2a20d0cd-cec2-44d0-8ee8-5270090cf552.png)
+![italygpt2-mobile](https://user-images.githubusercontent.com/120139042/230799922-fa5e9340-e4a4-4ac9-ad5d-997379715ed0.png)
 
 
 
