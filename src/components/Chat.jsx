@@ -18,8 +18,10 @@ const Chat = () => {
   const [loading, setLoading] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openCreateConvModal, setOpenCreateConvModal] = useState(false)
+  const [convExists, setConvExists] = useState(false)
   const apikey = localStorage.getItem('apikey')
   const conversationid = localStorage.getItem('conversationid')
+  let convIds = []
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -75,6 +77,14 @@ const Chat = () => {
     setChatMessages([...chatMessages, newMessage, newAnswer])
   }
 
+  const checkContained = (data) => {
+    console.log(data)
+    for (var i = 0; i <= data.length; i++){
+      convIds.push(data[i]._id)
+    }
+    console.log(convIds)
+  }
+
 
   // ALWAYS SCROLL TO LAST MESSAGE
   const handleScroll = () => {
@@ -92,6 +102,19 @@ const Chat = () => {
     getMessages(conversationid)
     getConversations()
   }, [])
+
+  useEffect(() => {
+    checkContained({conversationsArray})
+    conversationsArray.map((conv) => {
+      convIds.push(conv._id)
+    })
+    if(convIds.includes(conversationid)){
+      setConvExists(true)
+    }else{
+      setConvExists(false)
+    }
+  }, [conversationsArray])
+
 
   return (
 
@@ -161,6 +184,10 @@ const Chat = () => {
 
         {/* RIGHT SIDE */}
         <div className='relative h-[100%] w-[100%] md:w-[75%] lg:w-[85%] bg-[#202329] flex flex-col'>
+          
+          {!convExists &&
+            (<div className='flex justify-center items-center p-5 font-bold text-gray-600 animate-pulse'>Seleziona una conversazione</div>)
+          }
 
           {/* CHAT MESSAGES CONTAINER */}
           <div className='flex flex-col max-h-[85%] overflow-y-auto overflow-x-hidden'>
