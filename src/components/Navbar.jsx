@@ -23,7 +23,6 @@ const Navbar = () => {
     const getConversations = async () => {
         try {
           const conversations = await axios.get("http://localhost:5000/api/conversation")
-          console.log(conversations)
           setConversationsArray(conversations.data)
           return conversations
         } catch (error) {
@@ -85,7 +84,7 @@ const Navbar = () => {
                         {conversationsArray.length > 0 &&
                             conversationsArray.map((conversation) => {
                                 return (
-                                    <NavbarChatItem id={conversation._id} label={conversation.name} />
+                                    <NavbarChatItem id={conversation._id} label={conversation.name} key={conversation._id} />
                                 )
                             })
                         }

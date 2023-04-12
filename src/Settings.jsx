@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast"
 
 const Settings = () => {
   const [apiKeyText, setApiKeyText] = useState('')
+  const [apikey, setApikey] = useState('')
   const dispatch = useDispatch()
 
   const setApiKey = (apikey) => {
@@ -17,16 +18,20 @@ const Settings = () => {
     dispatch(addApiKey(apikey))
     setApiKeyText('')
     toast.success('API key impostata correttamente')
+
+    setTimeout(() => {
+      window.location.reload(false);
+    }, "1000")
   }
-
-  const apikey = localStorage.getItem('apikey')
-
-  //const currentApiKey = useSelector((state) => state.apikey)
-  //const {apikey} = currentApiKey
-
-  //useEffect(() => {
-  //  console.log(apikey)
-  //}, [apikey])
+  
+  useEffect(() => {
+    if(localStorage.getItem('apikey') === null) {
+      console.log('api key not set')
+    } else {
+      const apikey = localStorage.getItem('apikey')
+      setApikey(apikey)
+    }
+  }, [apikey])
 
   return (
     
@@ -49,13 +54,13 @@ const Settings = () => {
             </a>
           </div>
 
-          <div className='mt-10 flex flex-row justify-center items-center gap-2'>
+          <div className='mt-10 flex flex-col md:flex-row justify-center items-center gap-2'>
             <div className='text-lg font-semibold text-white'>
               La tua API key attuale: 
             </div>
             <div className='p-5 items-center justify-center flex bg-transparent border-[1px] w-content h-[20px] rounded-md'>
               <div className='flex text-white'>
-                {apikey.substring(0,3) + '*****' + apikey.slice(-4)}
+                {apikey !== undefined && apikey.substring(0,3) + '*****' + apikey.slice(-4)}
               </div>
             </div>
           </div>

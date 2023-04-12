@@ -21,7 +21,7 @@ const Chat = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openCreateConvModal, setOpenCreateConvModal] = useState(false)
   const [convExists, setConvExists] = useState(false)
-  const apikey = localStorage.getItem('apikey')
+  const [apikey, setApikey] = useState('')
   const conversationid = localStorage.getItem('conversationid')
   let convIds = []
 
@@ -117,6 +117,14 @@ const Chat = () => {
     }
   }, [conversationsArray])
 
+  useEffect(() => {
+    if(localStorage.getItem('apikey') === null) {
+      console.log('api key not set')
+    } else {
+      const apikey = localStorage.getItem('apikey')
+      setApikey(apikey)
+    }
+  }, [apikey])
 
   return (
 
@@ -192,7 +200,7 @@ const Chat = () => {
 
 
           {/* TEXT BOX CONTAINER */}
-          {convExists &&
+          {(convExists && apikey !== '') &&
             <div className='absolute flex items-center justify-center bottom-0 bg-[#2E333F] w-full h-[15%]'>
               <div className='p-5 w-[95%] h-[80%] md:h-[80%] md:w-[90%] lg:w-[60%] bg-transparent flex items-center justify-center rounded-lg border-[1.5px] border-gray-500 overflow-hidden'>
                 <input onKeyDown={handleKeyDown} disabled={loading} value={currentMessage} onChange={(e) => setCurrentMessage(e.target.value)} className='bg-transparent w-full h-full p-5 focus:outline-none text-white' placeholder='Chiedimi qualcosa...'/>
@@ -208,6 +216,14 @@ const Chat = () => {
                   </div>
                 </div>
 
+              </div>
+            </div>
+          }
+
+          {apikey === '' &&
+            <div className='absolute flex items-center justify-center bottom-0 bg-[#2E333F] w-full h-[15%]'>
+              <div className='p-5 w-[95%] h-[80%] md:h-[80%] md:w-[90%] lg:w-[60%] bg-transparent flex items-center justify-center rounded-lg border-[1.5px] border-gray-500 overflow-hidden'>
+                <div className='text-white font-semibold text-center text-sm'>Per poter utilizzare l'applicazione devi impostare una API key nella pagina 'Impostazioni'</div>
               </div>
             </div>
           }
