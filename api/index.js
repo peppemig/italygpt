@@ -27,6 +27,10 @@ app.use("/api/ask", askRoute)
 app.use("/api/message", messageRoute)
 app.use("/api/conversation", conversationRoute)
 
+app.get("/hello", (req,res) => {
+    res.json("hello world!")
+})
+
 // START
 app.listen(5000, () => {
     connect()
