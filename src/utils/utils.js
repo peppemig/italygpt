@@ -12,7 +12,7 @@ export const genDate = () => {
 // ASK QUESTION TO API
 export const askQuestion = async (convid, question, apikey) => {
   try {
-    const response = await axios.put(`http://localhost:5000/api/ask/${convid}`, {data: question, apikey: apikey})
+    const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/ask/${convid}`, {data: question, apikey: apikey})
     return response.data
   } catch (error) {
     return error.message
@@ -22,7 +22,7 @@ export const askQuestion = async (convid, question, apikey) => {
 // DELETE ALL MESSAGES
 export const deleteAllMessages = async (convid) => {
   try {
-    const response = await axios.put(`http://localhost:5000/api/conversation/messages/${convid}`).then(toast.success('Cronologia messaggi eliminata'))
+    const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/conversation/messages/${convid}`).then(toast.success('Cronologia messaggi eliminata'))
     
     setTimeout(() => {
       window.location.reload(false);
@@ -37,7 +37,7 @@ export const deleteAllMessages = async (convid) => {
 // CREATE NEW CONVERSATION
 export const createNewConversation = async (name) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/conversation", {name: name}).then(toast.success('Conversazione creata correttamente'))
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/conversation`, {name: name}).then(toast.success('Conversazione creata correttamente'))
 
     setTimeout(() => {
       window.location.reload(false);

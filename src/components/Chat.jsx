@@ -35,7 +35,7 @@ const Chat = () => {
 
   const getMessages = async (convid) => {
     try {
-      const messages = await axios.get(`http://localhost:5000/api/conversation/${convid}`)
+      const messages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/conversation/${convid}`)
       setChatMessages(messages.data.messages)
       return messages
     } catch (error) {
@@ -45,7 +45,7 @@ const Chat = () => {
 
   const getConversations = async () => {
     try {
-      const conversations = await axios.get("http://localhost:5000/api/conversation")
+      const conversations = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/conversation`)
       setConversationsArray(conversations.data)
       return conversations
     } catch (error) {

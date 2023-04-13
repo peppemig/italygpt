@@ -10,7 +10,7 @@ const ChatItem = ({id, label}) => {
 
   const deleteConversation = async (convId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/conversation/${convId}`).then(toast.success('Chat eliminata correttamente'))
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/conversation/${convId}`).then(toast.success('Chat eliminata correttamente'))
 
       setTimeout(() => {
         window.location.reload(false);

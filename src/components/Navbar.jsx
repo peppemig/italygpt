@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const getConversations = async () => {
         try {
-          const conversations = await axios.get("http://localhost:5000/api/conversation")
+          const conversations = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/conversation`)
           setConversationsArray(conversations.data)
           return conversations
         } catch (error) {
